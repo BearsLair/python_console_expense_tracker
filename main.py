@@ -28,3 +28,11 @@ def handle_add_expense(expenses):
     add_expense(expenses, amount, category, description, date)
     save_expenses(expenses)
     print("Expense added successfully:")
+
+    def handle_view_expenses(expenses):
+        print("\n--- All Expenses ---")
+        print(list_expenses(expenses))
+
+    def handle_summary(expenses):
+        print("\n--- Summary ---")
+        print(summarize(expenses))
