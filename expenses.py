@@ -27,3 +27,28 @@ def list_expenses(expenses):
 
         return "\n".join(lines)
     
+def summarize(expenses):
+    if not expenses:
+        return "No expenses to summarize."
+    
+    # ???
+    total = sum(exp["amount"] for exp in expenses)
+
+    categories = {}
+    for exp in expenses:
+        cat = exp["category"]
+        categories[cat] = categories.get(cat, 0) + exp["amount"]
+
+    summary_lines = [
+        f"Total spent: ${total:.2f}",
+        "",
+        "By category:"
+    ]
+
+    for cat, amount in categories.items():
+        summary_lines.append(f"  {cat}: ${amount:.2f}")
+
+    for cat, amount in categories.items():
+        summary_lines.append(f"  {cat}: ${amount:.2f}")
+
+    return "\n".join(summary_lines)
