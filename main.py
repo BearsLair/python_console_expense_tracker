@@ -29,10 +29,33 @@ def handle_add_expense(expenses):
     save_expenses(expenses)
     print("Expense added successfully:")
 
-    def handle_view_expenses(expenses):
+def handle_view_expenses(expenses):
         print("\n--- All Expenses ---")
         print(list_expenses(expenses))
 
-    def handle_summary(expenses):
+def handle_summary(expenses):
         print("\n--- Summary ---")
         print(summarize(expenses))
+
+def main():
+     expenses = load_expenses()
+
+     while True:
+        choice = main_menu()
+
+        if choice == "1":
+            handle_add_expense(expenses)
+        elif choice == "2":
+            handle_view_expenses(expenses)
+        elif choice == "3":
+            handle_summary(expenses)
+        elif choice == "4":
+            print("Goodbye")
+            break
+        else:
+             print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+     main()
+
+
