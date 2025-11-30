@@ -52,3 +52,20 @@ def summarize(expenses):
         summary_lines.append(f"  {cat}: ${amount:.2f}")
 
     return "\n".join(summary_lines)
+
+def edit_expense(expenses, index, amount=None, category=None, description=None, date=None):
+    if index < 0 or index >= len(expenses):
+        return False
+    
+    expense = expenses[index]
+
+    if amount is not None:
+        expense["amount"] = amount
+    if category is not None:
+        expense["category"] = category
+    if description is not None:
+        expense["description"] = description
+    if date is not None:
+        expense["date"] = date
+
+    return True
