@@ -69,3 +69,10 @@ def edit_expense(expenses, index, amount=None, category=None, description=None, 
         expense["date"] = date
 
     return True
+
+def delete_expense(expenses, index):
+    if index < 0 or index >= len(expenses):
+        return False
+    
+    del expenses[index]
+    return True
