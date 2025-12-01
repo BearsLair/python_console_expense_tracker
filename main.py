@@ -47,26 +47,27 @@ def handle_edit_expense(expenses):
     except ValueError:
         print("Invalid input.")
         return
-    
+
     if index < 0 or index >= len(expenses):
         print("Expense not found.")
         return
-    
-    print("Leave a field blank to keep the current value.")
 
     current = expenses[index]
+
+    print("\nLeave a field blank to keep the current value.\n")
 
     amount_str = input(f"New amount (current: ${current['amount']:.2f}): ")
     category = input(f"New category (current: {current['category']}): ")
     description = input(f"New description (current: {current['description']}): ")
     date = input(f"New date (current: {current['date']}): ")
 
+    # Convert empty values to None
     amount = None
     if amount_str.strip():
         try:
             amount = float(amount_str)
         except ValueError:
-            print("Invalid amount. Keep old value.")
+            print("Invalid amount; keeping old value.")
             amount = None
 
     if category.strip() == "":
@@ -76,11 +77,30 @@ def handle_edit_expense(expenses):
     if date.strip() == "":
         date = None
 
+    # Preview changes
+    print("\nYou are about to apply the following changes:\n")
+
+    print("Before:")
+    print(f"  ${current['amount']:.2f} - {current['category']} - {current['description']} ({current['date']})")
+
+    print("\nAfter:")
+    print(f"  ${amount if amount is not None else current['amount']:.2f} - "
+          f"{category if category is not None else current['category']} - "
+          f"{description if description is not None else current['description']} - "
+          f"({date if date is not None else current['date']})")
+
+    confirm = input("\nSave these changes? (y/n): ").strip().lower()
+
+    if confirm != "y":
+        print("Edit cancelled.")
+        return
+
     if edit_expense(expenses, index, amount, category, description, date):
         save_expenses(expenses)
         print("Expense updated successfully!")
-    else: 
+    else:
         print("Failed to update expense.")
+
 
 def handle_delete_expense(expenses):
     print("\n--- Delete Expense ---")
