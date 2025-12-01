@@ -6,7 +6,9 @@ def main_menu():
     print("1. Add Expense")
     print("2. View All Expenses")
     print("3. View Summary")
-    print("4. Exit")
+    print("4. Edit Expense")
+    print("5. Delete Expense")
+    print("6. Exit")
     choice = input("Choose an option(1-4): ")
     return choice
 
