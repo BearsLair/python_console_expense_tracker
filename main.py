@@ -92,13 +92,25 @@ def handle_delete_expense(expenses):
         print("Invalid input.")
         return
     
+    if index < 0 or index >= len(expenses):
+        print("Expense not found.")
+        return
+    
+    exp = expenses[index]
+    print("\nYou are about to delete:")
+    print(f"  ${exp['amount']:.2f} - {exp['category']} - {exp['description']} ({exp['date']})")
+
+    confirm = input("Are you sure you want to delete this? (y/n): ").strip().lower()
+
+    if confirm != "y":
+        print("Delete cancelled.")
+        return
+
     if delete_expense(expenses, index):
         save_expenses(expenses)
         print("Expense delete.")
     else:
         print("Expense not found.")
-
-
 
 def main():
      expenses = load_expenses()
