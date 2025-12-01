@@ -112,6 +112,10 @@ def main():
         elif choice == "3":
             handle_summary(expenses)
         elif choice == "4":
+            handle_edit_expense(expenses)
+        elif choice == "5":
+            handle_delete_expense(expenses)
+        elif choice == "6":
             print("Goodbye!")
             break
         else:
