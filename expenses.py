@@ -22,10 +22,12 @@ def list_expenses(expenses):
     lines = []
     # what the hell is going on in this block of code?
     for i, exp in enumerate(expenses, start=1):
-        line = f"{i}. ${exp['amount']:.2f} - {exp['category']} - {exp['description']} ({exp['date']})"
+        line = (f"{i}. ${exp['amount']:.2f} - {exp['category']} - "
+        f"{exp['description']} ({exp['date']})")
+        
         lines.append(line)
 
-        return "\n".join(lines)
+    return "\n".join(lines)
     
 def summarize(expenses):
     if not expenses:
@@ -44,9 +46,6 @@ def summarize(expenses):
         "",
         "By category:"
     ]
-
-    for cat, amount in categories.items():
-        summary_lines.append(f"  {cat}: ${amount:.2f}")
 
     for cat, amount in categories.items():
         summary_lines.append(f"  {cat}: ${amount:.2f}")
