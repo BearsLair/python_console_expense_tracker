@@ -1,5 +1,5 @@
 from storage import load_expenses, save_expenses
-from expenses import add_expense, list_expenses, summarize, edit_expense, delete_expense
+from expenses import (add_expense, list_expenses, summarize, edit_expense, delete_expense)
 
 def main_menu():
     print("\n==== Personal Expense Tracker ====")
@@ -9,8 +9,7 @@ def main_menu():
     print("4. Edit Expense")
     print("5. Delete Expense")
     print("6. Exit")
-    choice = input("Choose an option(1-4): ")
-    return choice
+    return input("Choose an option(1-6): ")
 
 def handle_add_expense(expenses):
     print("\n--- Add Expense ---")
@@ -44,7 +43,7 @@ def handle_edit_expense(expenses):
     print(list_expenses(expenses))
 
     try:
-        index = int(input("\nEnter the number of the expense to edit: "))
+        index = int(input("\nEnter the number of the expense to edit: ")) - 1
     except ValueError:
         print("Invalid input.")
         return
@@ -88,7 +87,7 @@ def handle_delete_expense(expenses):
     print(list_expenses(expenses))
 
     try:
-        index = int(input("\nEnter the number of the expense to delete: "))
+        index = int(input("\nEnter the number of the expense to delete: ")) - 1
     except ValueError:
         print("Invalid input.")
         return
