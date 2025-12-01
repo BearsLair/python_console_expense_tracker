@@ -81,6 +81,22 @@ def handle_edit_expense(expenses):
     else: 
         print("Failed to update expense.")
 
+def handle_delete_expense(expenses):
+    print("\n--- Delete Expense ---")
+    print(list_expenses(expenses))
+
+    try:
+        index = int(input("\nEnter the number of the expense to delete: "))
+    except ValueError:
+        print("Invalid input.")
+        return
+    
+    if delete_expense(expenses, index):
+        save_expenses(expenses)
+        print("Expense delete.")
+    else:
+        print("Expense not found.")
+
 
 
 def main():
